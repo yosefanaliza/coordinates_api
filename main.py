@@ -4,9 +4,17 @@ from typing import List, Optional, Any
 import psycopg2
 from psycopg2.extras import RealDictCursor
 import os
-from contextlib import contextmanager
+from contextlib import contextmanager, asynccontextmanager
 
-app = FastAPI()
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    """Lifespan context manager for startup and shutdown events"""
+    # Startup
+    init_db()
+    yield
+    # Shutdown (if needed in the future)
+
+app = FastAPI(lifespan=lifespan)
 
 # Database configuration
 DB_CONFIG = {
@@ -77,12 +85,6 @@ def init_db():
     except Exception as e:
         print(f"✗ Database initialization error: {e}")
         raise
-
-
-@app.on_event("startup")
-async def startup_event():
-    """Run on application startup"""
-    init_db()
 
 
 @app.post("/coordinates", response_model=CoordinateResponse, status_code=status.HTTP_201_CREATED)
