@@ -28,10 +28,8 @@ This project demonstrates:
 ├── .env.example            # Environment template
 ├── .gitignore              # Git ignore file
 ├── .dockerignore           # Docker ignore file
-├── README.md               # This file
-└── k8s/                    # Kubernetes manifests
-    ├── postgres-statefulset.yaml
-    └── api-deployment.yaml
+└── README.md               # This file
+
 ```
 
 ## Local Development
