@@ -7,8 +7,6 @@ A FastAPI application that manages geographic coordinates with PostgreSQL backen
 This project demonstrates:
 - FastAPI REST API with PostgreSQL integration
 - Docker containerization
-- Kubernetes StatefulSet deployment for persistent database
-- Service discovery and networking in K8s
 
 ## Prerequisites
 
